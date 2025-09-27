@@ -3,11 +3,11 @@
 # You can make modifications to this file if you want to customize the startup process.
 # Things like installing additional custom nodes, or downloading models can be done here.
 
-bash /download_files.sh
-
 /comfyui-on-workspace.sh
 
 service nginx start
+
+bash /download_files.sh
 
 # Start JupyterLab
 echo "Starting JupyterLab..."
