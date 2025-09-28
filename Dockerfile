@@ -32,6 +32,7 @@ COPY --chmod=755 start.sh /start.sh
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     cd ComfyUI && \
     pip3 install -r requirements.txt && \
+    pip3 install gguf && \
     cd custom_nodes && \
     git clone https://github.com/ltdrdata/was-node-suite-comfyui.git && \
     git clone https://github.com/chflame163/ComfyUI_LayerStyle.git && \
@@ -42,19 +43,10 @@ RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
     cd /ComfyUI
 
-#COPY --chmod=644 workflows/ /ComfyUI/user/default/workflows/
+COPY --chmod=644 i2lineart_qwen_image_edit.json /ComfyUI/user/default/workflows/
 
 WORKDIR /workspace
 EXPOSE 8188
-
-# This is a hacky way to change the default workflow on startup, but it works
-COPY --chmod=644 i2lineart_qwen_image_edit.json /defaultGraph.json
-COPY --chmod=755 replaceDefaultGraph.py /replaceDefaultGraph.py
-# Run the Python script
-RUN python3 /replaceDefaultGraph.py
-
-# Overwrite the default.json file in ComfyUI/web/templates for the new UI
-COPY --chmod=644 i2lineart_qwen_image_edit.json /ComfyUI/web/templates/default.json
 
 # Add Jupyter Notebook
 RUN pip3 install jupyterlab

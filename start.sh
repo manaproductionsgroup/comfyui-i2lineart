@@ -11,9 +11,8 @@ bash /download_files.sh
 
 # Start JupyterLab
 echo "Starting JupyterLab..."
-jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.allow_origin='*' &
+jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root --NotebookApp.allow_origin='*' --IdentityProvider.token="" --ServerApp.password="" &
 echo "JupyterLab started."
-echo "REMEMBER TO ACCESS YOU HAVE TO COPY/PASTE THE TOKEN ACCESS -> ?lab&token="
 
 echo "Starting FileBrowser..."
 filebrowser --address=0.0.0.0 --port=4040 --root=/ --noauth &
