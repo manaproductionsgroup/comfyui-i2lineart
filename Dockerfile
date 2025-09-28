@@ -32,15 +32,15 @@ COPY --chmod=755 start.sh /start.sh
 RUN git clone https://github.com/comfyanonymous/ComfyUI.git && \
     cd ComfyUI && \
     pip3 install -r requirements.txt && \
-    pip3 install gguf && \
     cd custom_nodes && \
     git clone https://github.com/ltdrdata/was-node-suite-comfyui.git && \
     git clone https://github.com/chflame163/ComfyUI_LayerStyle.git && \
-    git clone https://github.com/city96/ComfyUI-GGUF.git && \
+    git clone https://github.com/calcuis/gguf && \
     git clone https://github.com/yolain/ComfyUI-Easy-Use.git && \
     git clone https://github.com/Comfy-Org/ComfyUI-Manager.git && \
     git clone https://github.com/BadCafeCode/masquerade-nodes-comfyui.git && \
     git clone https://github.com/rgthree/rgthree-comfy.git && \
+    git clone https://github.com/kijai/ComfyUI-KJNodes.git && \
     cd /ComfyUI
 
 COPY --chmod=644 i2lineart_qwen_image_edit.json /ComfyUI/user/default/workflows/
@@ -84,5 +84,11 @@ RUN cd /ComfyUI/custom_nodes && \
 RUN cd /ComfyUI/custom_nodes && \
     cd rgthree-comfy && \
     pip3 install -r requirements.txt
+
+# ComfyUI-KJNodes
+RUN cd /ComfyUI/custom_nodes && \
+    cd ComfyUI-KJNodes && \
+    pip3 install -r requirements.txt
+
 
 CMD [ "/start.sh" ]
